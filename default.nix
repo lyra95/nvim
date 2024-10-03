@@ -5,10 +5,13 @@
   imports = [
     ./modules/bufferline.nix
     ./modules/lsp.nix
+    ./modules/lsp-k8s.nix
   ];
 
   colorscheme = "catppuccin";
   colorschemes.catppuccin.enable = true;
+
+  lsp-k8s.enable = true;
 
   globalOpts = {
     number = true;
