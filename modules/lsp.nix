@@ -9,6 +9,7 @@
         nil-ls.enable = true;
         nil-ls.settings.formatting.command = ["alejandra"];
         nixd.enable = true;
+        bashls.enable = true;
       };
       keymaps = {
         silent = true;
