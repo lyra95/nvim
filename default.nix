@@ -4,8 +4,7 @@
 {
   imports = [
     ./modules/bufferline.nix
-    ./modules/lsp.nix
-    ./modules/lsp-k8s.nix
+    ./modules/lsp
   ];
 
   colorscheme = "catppuccin";

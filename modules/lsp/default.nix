@@ -1,16 +1,14 @@
-{pkgs, ...}: {
-  extraPackages = [pkgs.alejandra];
-
+{...}: {
+  imports = [
+    ./bash.nix
+    ./nix.nix
+    ./yaml.nix
+  ];
   plugins = {
     lsp-format.enable = true;
+    none-ls.enable = true;
     lsp = {
       enable = true;
-      servers = {
-        nil-ls.enable = true;
-        nil-ls.settings.formatting.command = ["alejandra"];
-        nixd.enable = true;
-        bashls.enable = true;
-      };
       keymaps = {
         silent = true;
         lspBuf = {
