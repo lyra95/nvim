@@ -19,11 +19,15 @@
     # https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/8
     # import vs legacyPackages
     # the latter has performance gain
-    pkgsBuilder = system: nixpkgs.legacyPackages.${system};
-    nixvimBuilder = system: let
+    pkgsBuilder = system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    nixvimBuilder = pkgs: system: let
       nixvim' = nixvim.legacyPackages.${system};
       nixvimModule = {
-        pkgs = pkgsBuilder system;
+        inherit pkgs;
         module = import ./default.nix;
         extraSpecialArgs = {};
       };
@@ -32,7 +36,7 @@
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = pkgsBuilder system;
-      nvim = nixvimBuilder system;
+      nvim = nixvimBuilder pkgs system;
     in {
       formatter = pkgs.alejandra;
       devShells.default = pkgs.mkShell {packages = [nvim];};
