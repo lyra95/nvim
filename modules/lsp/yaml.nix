@@ -19,7 +19,7 @@
             validate = true;
             yaml = {
               schemas = {
-                # kubernetes = "";
+                kubernetes = "";
                 "https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta8.json" = "skaffold.yaml";
                 "http://json.schemastore.org/github-workflow" = ".github/workflows/*";
                 "http://json.schemastore.org/github-action" = ".github/*.{yml,yaml}";
