@@ -34,6 +34,9 @@
       {name = "buffer";}
     ];
 
+    telescope.enable = true;
+    telescope.extensions.ui-select.enable = true;
+
     # # Linewise
     #
     # `gcw` - Toggle from the current cursor position to the next word
