@@ -25,6 +25,12 @@
   plugins = {
     nvim-autopairs.enable = true;
     lualine.enable = true;
+    cmp.enable = true;
+    cmp.settings.sources = [
+      {name = "nvim_lsp";}
+      {name = "path";}
+      {name = "buffer";}
+    ];
 
     # # Linewise
     #
