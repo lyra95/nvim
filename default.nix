@@ -25,6 +25,8 @@
   plugins = {
     nvim-autopairs.enable = true;
     lualine.enable = true;
+    # need to run :Copilot setup once
+    copilot-vim.enable = true;
     cmp.enable = true;
     cmp.settings.sources = [
       {name = "nvim_lsp";}
