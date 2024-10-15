@@ -36,6 +36,7 @@
     ];
     cmp-treesitter.enable = true;
     treesitter.enable = true;
+    treesitter.folding = true;
 
     telescope.enable = true;
     telescope.extensions.ui-select.enable = true;
