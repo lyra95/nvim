@@ -32,7 +32,9 @@
       {name = "nvim_lsp";}
       {name = "path";}
       {name = "buffer";}
+      {name = "treesitter";}
     ];
+    cmp-treesitter.enable = true;
     treesitter.enable = true;
 
     telescope.enable = true;
