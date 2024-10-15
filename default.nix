@@ -33,6 +33,7 @@
       {name = "path";}
       {name = "buffer";}
     ];
+    treesitter.enable = true;
 
     telescope.enable = true;
     telescope.extensions.ui-select.enable = true;
