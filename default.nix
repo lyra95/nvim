@@ -23,7 +23,10 @@
   };
 
   plugins = {
-    nvim-autopairs.enable = true;
+    nvim-autopairs = {
+      enable = true;
+      settings.check_ts = true;
+    };
     lualine.enable = true;
     # need to run :Copilot setup once
     copilot-vim.enable = true;
