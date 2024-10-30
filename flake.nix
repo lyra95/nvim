@@ -11,35 +11,55 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     flake-utils,
     nixvim,
     ...
-  }: let
-    # https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/8
-    # import vs legacyPackages
-    # the latter has performance gain
-    pkgsBuilder = system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-    nixvimBuilder = pkgs: system: let
-      nixvim' = nixvim.legacyPackages.${system};
-      nixvimModule = {
-        inherit pkgs;
-        module = import ./default.nix;
-        extraSpecialArgs = {};
-      };
+  }:
+    (let
+      # https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462/8
+      # import vs legacyPackages
+      # the latter has performance gain
+      pkgsBuilder = system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      nixvimBuilder = pkgs: system: let
+        nixvim' = nixvim.legacyPackages.${system};
+        nixvimModule = {
+          inherit pkgs;
+          module = {
+            imports = [
+              self.nixvimModules.default
+              ./default.nix
+            ];
+          };
+          extraSpecialArgs = {};
+        };
+      in
+        nixvim'.makeNixvimWithModule nixvimModule;
     in
-      nixvim'.makeNixvimWithModule nixvimModule;
-  in
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = pkgsBuilder system;
-      nvim = nixvimBuilder pkgs system;
-    in {
-      formatter = pkgs.alejandra;
-      devShells.default = pkgs.mkShell {packages = [nvim];};
-      packages.default = nvim;
-    });
+      flake-utils.lib.eachDefaultSystem (system: let
+        pkgs = pkgsBuilder system;
+        nvim = nixvimBuilder pkgs system;
+      in {
+        formatter = pkgs.alejandra;
+        devShells.default = pkgs.mkShell {packages = [nvim];};
+        packages.default = nvim;
+      }))
+    // {
+      nixvimModules = let
+        modules = {
+          folding = ./modules/folding.nix;
+          completion = ./modules/completion.nix;
+          telescope = ./modules/telescope.nix;
+        };
+        all = {
+          imports = builtins.attrValues modules;
+        };
+      in
+        modules // {default = all;};
+    };
 }

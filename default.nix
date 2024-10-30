@@ -7,6 +7,10 @@
     ./modules/lsp
   ];
 
+  folding.enable = true;
+  completion.enable = true;
+  telescope.enable = true;
+
   colorscheme = "catppuccin";
   colorschemes.catppuccin.enable = true;
 
@@ -28,21 +32,6 @@
       settings.check_ts = true;
     };
     lualine.enable = true;
-    # need to run :Copilot setup once
-    copilot-vim.enable = true;
-    cmp.enable = true;
-    cmp.settings.sources = [
-      {name = "nvim_lsp";}
-      {name = "path";}
-      {name = "buffer";}
-      {name = "treesitter";}
-    ];
-    cmp-treesitter.enable = true;
-    treesitter.enable = true;
-    treesitter.folding = true;
-
-    telescope.enable = true;
-    telescope.extensions.ui-select.enable = true;
 
     # # Linewise
     #
