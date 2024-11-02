@@ -58,6 +58,7 @@
           neotree = ./modules/neotree.nix;
           bufferline = ./modules/bufferline.nix;
           lsp = ./modules/lsp;
+          misc = ./modules/misc;
         };
         all = {
           imports = builtins.attrValues modules;
