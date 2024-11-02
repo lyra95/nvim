@@ -26,28 +26,39 @@
           inherit system;
           config.allowUnfree = true;
         };
-      nixvimBuilder = pkgs: system: let
-        nixvim' = nixvim.legacyPackages.${system};
-        nixvimModule = {
-          inherit pkgs;
-          module = {
-            imports = [
-              self.nixvimModules.default
-              ./default.nix
-            ];
-          };
-          extraSpecialArgs = {};
+
+      moduleBuilder = pkgs: {
+        inherit pkgs;
+        module = {
+          imports = [
+            self.nixvimModules.default
+            ./default.nix
+          ];
         };
+        extraSpecialArgs = {};
+      };
+
+      # https://github.com/nix-community/nixvim/blob/356896f58dde22ee16481b7c954e340dceec340d/modules/top-level/test.nix#L70
+      # https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-runCommandLocal
+      # builds nvim locally, and tests `nvim -mn --headless "+q"` to see if it exits successfully
+      checkBuilder = module: system: let
+        nixvimLib = nixvim.lib.${system};
       in
-        nixvim'.makeNixvimWithModule nixvimModule;
+        nixvimLib.checkModule module;
+
+      vimBuilder = module: system: let
+        nixvim' = nixvim.legacyPackages.${system};
+      in
+        nixvim'.makeNixvimWithModule module;
     in
       flake-utils.lib.eachDefaultSystem (system: let
         pkgs = pkgsBuilder system;
-        nvim = nixvimBuilder pkgs system;
+        module = moduleBuilder pkgs;
       in {
         formatter = pkgs.alejandra;
-        devShells.default = pkgs.mkShell {packages = [nvim];};
-        packages.default = nvim;
+        devShells.default = pkgs.mkShell {packages = [(vimBuilder module system)];};
+        packages.default = vimBuilder module system;
+        check = checkBuilder module system;
       }))
     // {
       nixvimModules = let
