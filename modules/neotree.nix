@@ -52,6 +52,12 @@
           desc = "toggle Neotree";
         };
       }
+      {
+        mode = "n";
+        key = "<leader><s-t>";
+        action = "<cmd>Neotree reveal_force_cwd<cr>";
+        options.desc = "open directory of current file in Neotree";
+      }
     ];
 
     plugins.bufferline.settings.options.offsets = lib.mkIf config.neo-tree.enableBufferlineIntegration [
