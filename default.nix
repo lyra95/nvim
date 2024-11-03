@@ -14,5 +14,6 @@
     k8s.enable = true;
     bash.enable = true;
     nix.enable = true;
+    markdown.enable = true;
   };
 }

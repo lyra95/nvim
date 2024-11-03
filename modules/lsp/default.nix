@@ -7,6 +7,7 @@
     ./bash.nix
     ./nix.nix
     ./k8s.nix
+    ./markdown.nix
   ];
 
   options = {
