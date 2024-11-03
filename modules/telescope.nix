@@ -6,6 +6,7 @@
   options.telescope.enable = lib.mkEnableOption "use telescope";
   config = lib.mkIf config.telescope.enable {
     plugins = {
+      web-devicons.enable = true;
       telescope.enable = true;
       telescope.extensions.ui-select.enable = true;
       telescope.keymaps = {

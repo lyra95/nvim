@@ -9,7 +9,7 @@
   config = lib.mkIf config.lsp.k8s.enable {
     plugins = {
       lsp.servers = {
-        docker-compose-language-service.enable = true;
+        docker_compose_language_service.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
         yamlls.extraOptions = {
