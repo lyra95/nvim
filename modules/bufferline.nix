@@ -21,42 +21,42 @@
       windows = [
         {
           mode = "n";
-          key = "]]";
+          key = "<leader>w]";
           options.desc = "Cycle to next window";
           action = "<cmd>wincmd w<CR>";
         }
 
         {
           mode = "n";
-          key = "[[";
+          key = "<leader>w[";
           options.desc = "Cycle to previous window";
           action = "<cmd>wincmd W<CR>";
         }
 
         {
           mode = "n";
-          key = "<leader>h";
+          key = "<leader>sh";
           options.desc = "split window horizontally left";
           action = "<cmd>leftabove vsplit<CR>";
         }
 
         {
           mode = "n";
-          key = "<leader>l";
+          key = "<leader>sl";
           options.desc = "split window horizontally right";
           action = "<cmd>rightbelow vsplit<CR>";
         }
 
         {
           mode = "n";
-          key = "<leader>j";
+          key = "<leader>sj";
           options.desc = "split window vertically below";
           action = "<cmd>below split<CR>";
         }
 
         {
           mode = "n";
-          key = "<leader>k";
+          key = "<leader>sk";
           options.desc = "split window vertically above";
           action = "<cmd>above split<CR>";
         }
