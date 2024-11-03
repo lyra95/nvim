@@ -9,6 +9,7 @@
   };
 
   config = lib.mkIf config.neo-tree.enable {
+    plugins.web-devicons.enable = true;
     plugins.neo-tree = {
       enable = true;
       filesystem = {
@@ -17,6 +18,7 @@
           hideGitignored = false;
         };
       };
+
       defaultComponentConfigs = {
         indent = {
           withExpanders = true;
@@ -52,7 +54,7 @@
       }
     ];
 
-    plugins.bufferline.offsets = lib.mkIf config.neo-tree.enableBufferlineIntegration [
+    plugins.bufferline.settings.options.offsets = lib.mkIf config.neo-tree.enableBufferlineIntegration [
       {
         filetype = "neo-tree";
         text = "Neo-tree";

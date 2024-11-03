@@ -7,10 +7,13 @@
 
   config = lib.mkIf config.bufferline.enable {
     plugins = {
+      web-devicons.enable = true;
       bufferline = {
         enable = true;
-        separatorStyle = "slope";
-        diagnostics = "nvim_lsp";
+        settings.options = {
+          separatorStyle = "slope";
+          diagnostics = "nvim_lsp";
+        };
       };
     };
 
