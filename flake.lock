@@ -3,7 +3,6 @@
     "devshell": {
       "inputs": {
         "nixpkgs": [
-          "nixvim",
           "nixpkgs"
         ]
       },
@@ -233,7 +232,9 @@
     },
     "nixvim": {
       "inputs": {
-        "devshell": "devshell",
+        "devshell": [
+          "devshell"
+        ],
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",
@@ -284,6 +285,7 @@
     },
     "root": {
       "inputs": {
+        "devshell": "devshell",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",

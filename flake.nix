@@ -8,6 +8,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.devshell.follows = "devshell";
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -15,6 +20,7 @@
     nixpkgs,
     flake-utils,
     nixvim,
+    devshell,
     ...
   }:
     (let
@@ -56,7 +62,33 @@
         module = moduleBuilder pkgs;
       in {
         formatter = pkgs.alejandra;
-        devShells.default = pkgs.mkShell {packages = [(vimBuilder module system)];};
+        devShells.default = let
+          mkShell =
+            (import devshell {
+              inherit system;
+              nixpkgs = pkgs;
+            })
+            .mkShell;
+        in
+          mkShell {
+            packages = [(vimBuilder module system) pkgs.alejandra];
+            commands = [
+              {
+                help = "run formatter";
+                name = "fmt";
+                command = ''
+                  alejandra "$PWD"
+                '';
+              }
+              {
+                help = "debug nix expression";
+                name = "debug";
+                command = ''
+                  nix repl --extra-experimental-features 'flakes repl-flake' "$PWD"
+                '';
+              }
+            ];
+          };
         packages.default = vimBuilder module system;
         check = checkBuilder module system;
       }))
