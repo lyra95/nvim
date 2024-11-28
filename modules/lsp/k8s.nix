@@ -27,7 +27,9 @@
                 "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
                 "http://json.schemastore.org/prettierrc" = ".prettierrc.{yml,yaml}";
                 "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "*docker-compose*.{yml,yaml}";
+                /*
                 "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.9-standalone-strict/all.json" = "*.{yml,yaml}";
+                */
               };
             };
           };
