@@ -8,9 +8,6 @@
   # https://github.com/hrsh7th/nvim-cmp
   config = lib.mkIf config.completion.enable {
     plugins = {
-      # need to run :Copilot setup once
-      copilot-vim.enable = true;
-
       cmp.enable = true;
       cmp-treesitter.enable = true;
 

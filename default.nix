@@ -8,6 +8,7 @@
   neo-tree.enable = true;
   neo-tree.enableBufferlineIntegration = true;
   bufferline.enable = true;
+  copilot.enable = true;
 
   lsp = {
     enable = true;

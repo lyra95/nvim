@@ -97,6 +97,7 @@
         modules = {
           folding = ./modules/folding.nix;
           completion = ./modules/completion.nix;
+          copilot = ./modules/copilot.nix;
           telescope = ./modules/telescope.nix;
           neotree = ./modules/neotree.nix;
           bufferline = ./modules/bufferline.nix;
