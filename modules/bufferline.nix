@@ -60,6 +60,13 @@
           options.desc = "split window vertically above";
           action = "<cmd>above split<CR>";
         }
+
+        {
+          mode = "n";
+          key = "<leader>wc";
+          options.desc = "close window";
+          action = "<cmd>close<CR>";
+        }
       ];
 
       buffers = [
