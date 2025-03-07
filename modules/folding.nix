@@ -54,10 +54,10 @@
       foldminlines = 9;
     };
 
-    extraConfigVim = ''
-      autocmd BufWinLeave * mkview
-      autocmd BufWinEnter * silent! loadview
-    '';
+    extraConfigVim = "
+      autocmd BufWinLeave * if &buftype != 'nofile' && expand('%') != '' | mkview | endif
+      autocmd BufWinEnter * if &buftype != 'nofile' && expand('%') != '' | silent! loadview | endif
+    ";
 
     plugins.treesitter.enable = true;
     plugins.treesitter.folding = true;
