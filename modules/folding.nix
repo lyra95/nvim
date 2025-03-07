@@ -54,6 +54,11 @@
       foldminlines = 9;
     };
 
+    extraConfigVim = ''
+      autocmd BufWinLeave * mkview
+      autocmd BufWinEnter * silent! loadview
+    '';
+
     plugins.treesitter.enable = true;
     plugins.treesitter.folding = true;
   };
