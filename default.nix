@@ -17,4 +17,6 @@
     nix.enable = true;
     markdown.enable = true;
   };
+
+  plugins.lazygit.enable = true;
 }
