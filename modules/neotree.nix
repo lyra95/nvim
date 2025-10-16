@@ -12,22 +12,22 @@
     plugins.web-devicons.enable = true;
     plugins.neo-tree = {
       enable = true;
-      filesystem = {
-        filteredItems = {
-          hideDotfiles = false;
-          hideGitignored = false;
+      settings.filesystem = {
+        filtered_items = {
+          hide_dotfiles = false;
+          hide_gitignored = false;
         };
       };
 
-      defaultComponentConfigs = {
+      settings.default_component_configs = {
         indent = {
-          withExpanders = true;
-          expanderCollapsed = "󰅂";
-          expanderExpanded = "󰅀";
-          expanderHighlight = "NeoTreeExpander";
+          with_expanders = true;
+          expander_collapsed = "󰅂";
+          expander_expanded = "󰅀";
+          expander_highlight = "NeoTreeExpander";
         };
 
-        gitStatus = {
+        git_status = {
           symbols = {
             added = " ";
             conflict = "󰩌 ";
